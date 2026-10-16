@@ -15,3 +15,26 @@ target_compile_options(kis-time-corridors PRIVATE
     -Wextra
     -Wpedantic
 )
+
+# Автоматические тесты
+enable_testing()
+
+add_executable(kis-time-corridors-tests
+    tests/tests.cpp
+    src/solver.cpp
+)
+
+target_include_directories(kis-time-corridors-tests PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
+
+target_compile_options(kis-time-corridors-tests PRIVATE
+    -Wall
+    -Wextra
+    -Wpedantic
+)
+
+add_test(
+    NAME solver-tests
+    COMMAND kis-time-corridors-tests
+)
